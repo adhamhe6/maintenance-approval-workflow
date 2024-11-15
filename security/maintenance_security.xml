@@ -1,0 +1,14 @@
+<!-- maintenance_approval_workflow/security/maintenance_security.xml -->
+<odoo>
+    <record id="group_maintenance_user" model="res.groups">
+        <field name="name">Maintenance User</field>
+    </record>
+    <record id="group_maintenance_manager" model="res.groups">
+        <field name="name">Maintenance Manager</field>
+    </record>
+</odoo>
+<!--
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_maintenance_user,access_maintenance_request_user,model_maintenance_request,maintenance_approval_workflow.group_maintenance_user,1,1,1,1
+access_maintenance_manager,access_maintenance_request_manager,model_maintenance_request,maintenance_approval_workflow.group_maintenance_manager,1,1,1,1
+-->

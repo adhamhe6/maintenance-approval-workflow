@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Distribution / packaging
+*.egg-info/
+*.eggs/
+.eggs/
+dist/
+build/
+
+# Odoo specific folders and files
+odoo/
+odoo-bin
+
+# Ignore folders typically not needed in version control
+controllers/
+demo/
+
+# Ignore IDE/editor config files
+.vscode/
+.idea/
+
+# Ignore environment files
+.env
+.venv
+venv/
+ENV/
+env/
+
+# macOS-specific files
+.DS_Store
+
+# Temporary files
+*.log
+*.tmp
+*.swp

@@ -1,0 +1,56 @@
+<!-- maintenance_approval_workflow/views/maintenance_request_views.xml -->
+<odoo>
+    <record id="view_maintenance_request_form" model="ir.ui.view">
+        <field name="name">maintenance.request.form</field>
+        <field name="model">maintenance.request</field>
+        <field name="arch" type="xml">
+            <form string="Maintenance Request">
+                <header>
+                    <button name="action_submit" type="object" string="Submit" states="draft" class="btn-primary"/>
+                    <button name="action_approve_level_1" type="object" string="Approve Level 1" states="waiting_approval" groups="maintenance_approval_workflow.group_maintenance_manager"/>
+                    <button name="action_approve_level_2" type="object" string="Approve Level 2" states="approved_level_1" groups="maintenance_approval_workflow.group_maintenance_manager"/>
+                    <button name="action_fully_approve" type="object" string="Fully Approve" states="approved_level_2"/>
+                    <button name="action_schedule" type="object" string="Schedule" states="approved"/>
+                    <button name="action_done" type="object" string="Mark as Done" states="scheduled"/>
+                    <button name="action_reject" type="object" string="Reject" states="waiting_approval,approved_level_1,approved_level_2" class="btn-danger"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="request_date"/>
+                        <field name="requested_by"/>
+                        <field name="assigned_to"/>
+                        <field name="priority"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,waiting_approval,approved_level_1,approved_level_2,approved,scheduled,done,rejected"/>
+                        <field name="approval_level_1_user"/>
+                        <field name="approval_level_2_user"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_maintenance_request_tree" model="ir.ui.view">
+        <field name="name">maintenance.request.tree</field>
+        <field name="model">maintenance.request</field>
+        <field name="arch" type="xml">
+            <tree string="Maintenance Requests">
+                <field name="name"/>
+                <field name="request_date"/>
+                <field name="requested_by"/>
+                <field name="priority"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_maintenance_request" model="ir.actions.act_window">
+        <field name="name">Maintenance Requests</field>
+        <field name="res_model">maintenance.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_maintenance_root" name="Maintenance" sequence="20"/>
+    <menuitem id="menu_maintenance_request" name="Maintenance Requests" parent="menu_maintenance_root" sequence="20" action="action_maintenance_request"/>
+</odoo>
